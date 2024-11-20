@@ -1,13 +1,24 @@
-
-import usePassPort from "./application/Passport";
+import { useContext } from 'react';
+import { StoreContext } from './main';
+import { useStore } from 'zustand';
+import { StoreState } from './application/store';
 
 function Preview() {
+  const store = useContext(StoreContext);
 
-  const store = usePassPort({
-    storeName: 'aaa'
-  })
-  return <div>123123</div>
+  const state = useStore(store) as StoreState;
+  return (
+    <>
+      <div>version:{state.appInfo.version}</div>
+      <button
+        onClick={() => {
+          state.update({ appInfo: { version: 111 } });
+        }}
+      >
+        change
+      </button>
+    </>
+  );
 }
 
-
-export default Preview
+export default Preview;
