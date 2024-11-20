@@ -40,7 +40,6 @@ const useAppStore = (storeName: string) =>
       }),
       {
         name: storeName,
-        storage: createJSONStorage(() => sessionStorage),
       }
     )
   );
